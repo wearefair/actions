@@ -1,3 +1,13 @@
 #!/bin/bash
 
-cat ${GITHUB_EVENT_PATH}
+# ref_type=$(jq '.ref_type' ${GITHUB_EVENT_PATH})
+
+if [ $ref_type == "\"tag"\" ]
+then
+  echo "its a tag"
+  return 0
+else
+  echo "it is not a tag"
+  # do not continue the workflow
+  return 42
+fi
