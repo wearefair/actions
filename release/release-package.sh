@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ref_type=$(jq '.ref_type' ${GITHUB_EVENT_PATH})
+ref_type=$(jq '.ref_type' ${GITHUB_EVENT_PATH})
 
 if [[ $ref_type == "\"tag"\" ]]
 then
