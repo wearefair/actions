@@ -6,6 +6,7 @@ if [[ $ref_type == "\"tag"\" ]]
 then
   echo "its a tag"
   python setup.py bdist_wheel
+  ls
   exit 0
 else
   echo "it is not a tag"
