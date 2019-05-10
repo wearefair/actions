@@ -11,7 +11,7 @@ generate_release()
 {
   "tag_name": $tag_name,
   "target_commitish": "$target_commitish",
-  "name": $release,
+  "name": "${release}",
   "body": $tag_name,
   "draft": false,
   "prerelease": false
