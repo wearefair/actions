@@ -23,7 +23,7 @@ EOF
 if [[ $ref_type == "\"tag"\" ]]
 then
   echo "Creating release"
-  curl --data "$(generate_post_data)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN"
+  curl --data "$(generate_release)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN"
 
   exit 0
 else
