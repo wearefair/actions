@@ -30,8 +30,8 @@ then
   curl --data "$(generate_release)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN" >> response.json
   assets_url=$(jq '.assets_url' response.json | sed 's/"//g')
 
-  assets=$(curl $assets_url?access_token=$GITHUB_TOKEN)
-  echo $assets
+  $(curl $assets_url?access_token=$GITHUB_TOKEN >> assets.json)
+  cat assets.json
   exit 0
 else
   echo "Not a tag - will not try to release"
