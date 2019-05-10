@@ -3,6 +3,7 @@
 ref_type=$(jq '.ref_type' ${GITHUB_EVENT_PATH})
 tag_name=$(jq '.ref' ${GITHUB_EVENT_PATH})
 target_commitish=$GITHUB_SHA
+release=`echo "release-${tag_name}" | sed 's/"//g'`
 
 generate_release()
 {
@@ -10,7 +11,7 @@ generate_release()
 {
   "tag_name": $tag_name,
   "target_commitish": "$target_commitish",
-  "name": $tag_name,
+  "name": $release,
   "body": $tag_name,
   "draft": false,
   "prerelease": false
