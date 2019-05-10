@@ -2,7 +2,7 @@
 
 ref_type=$(jq '.ref_type' ${GITHUB_EVENT_PATH})
 tag_name=$(jq '.ref' ${GITHUB_EVENT_PATH})
-target_commitish=$GITHUB_REF
+target_commitish=$GITHUB_SHA
 
 generate_release()
 {
