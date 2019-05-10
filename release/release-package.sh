@@ -29,7 +29,7 @@ then
 
   curl --data "$(generate_release)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN" >> response.json
   assets_url=$(jq '.assets_url' response.json | sed 's/"//g')
-
+  echo $assets_url
   $(curl $assets_url?access_token=$GITHUB_TOKEN >> assets.json)
   cat assets.json
   exit 0
