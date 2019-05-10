@@ -28,8 +28,11 @@ then
   echo "Creating release"
 
   response=$(curl --data "$(generate_release)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN")
-  echo $response
+  assets_url=$(jq '.assets_url' response)
+  echo $assets_url
 
+  assets=$(curl $assets_url)
+  echo $assets
   exit 0
 else
   echo "Not a tag - will not try to release"
