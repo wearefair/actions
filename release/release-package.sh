@@ -27,7 +27,8 @@ then
   echo "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=NOOOOOOO"
   echo "Creating release"
 
-  curl --data "$(generate_release)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN"
+  response = `curl --data "$(generate_release)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN"`
+  echo $response
 
   exit 0
 else
