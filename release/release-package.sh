@@ -13,7 +13,7 @@ generate_release()
   "tag_name": "$tag_name",
   "target_commitish": "$target_commitish",
   "name": "$release",
-  "body": "$text",
+  "body": "$body",
   "draft": false,
   "prerelease": false
 }
@@ -22,7 +22,13 @@ EOF
 
 if [[ $ref_type == "\"tag"\" ]]
 then
+  echo "ref_type=${ref_type}, tag_name=${tag_name}, target_commitish=${target_commitish}, release=${release}"
+  echo "sending data ->"
+  echo "$(generate_release)"
+  echo "to this URL ->"
+  echo "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN"
   echo "Creating release"
+
   curl --data "$(generate_release)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN"
 
   exit 0
