@@ -27,8 +27,8 @@ then
   echo "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=NOOOOOOO"
   echo "Creating release"
 
-  response=$(curl --data "$(generate_release)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN")
-  assets_url=$(jq '.assets_url' response)
+  curl --data "$(generate_release)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN" >> response.json
+  assets_url=$(jq '.assets_url' response.json)
   echo $assets_url
 
   assets=$(curl $assets_url)
