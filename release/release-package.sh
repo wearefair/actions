@@ -3,8 +3,8 @@
 ref_type=$(jq '.ref_type' ${GITHUB_EVENT_PATH})
 tag_name=$(jq '.ref' ${GITHUB_EVENT_PATH})
 target_commitish=$GITHUB_REF
-release="release-'${tag_name}'"
-body="release-'${tag_name}'"
+release="release-$tag_name"
+body="release-$tag_name"
 
 generate_release()
 {
@@ -12,8 +12,8 @@ generate_release()
 {
   "tag_name": $tag_name,
   "target_commitish": "$target_commitish",
-  "name": "$release",
-  "body": "$body",
+  "name": $release,
+  "body": $body,
   "draft": false,
   "prerelease": false
 }
@@ -26,7 +26,7 @@ then
   echo "sending data ->"
   echo "$(generate_release)"
   echo "to this URL ->"
-  echo "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN"
+  echo "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=NOOOOOOO"
   echo "Creating release"
 
   curl --data "$(generate_release)" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?access_token=$GITHUB_TOKEN"
