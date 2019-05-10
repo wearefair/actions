@@ -3,8 +3,6 @@
 ref_type=$(jq '.ref_type' ${GITHUB_EVENT_PATH})
 tag_name=$(jq '.ref' ${GITHUB_EVENT_PATH})
 target_commitish=$GITHUB_REF
-release="release-$tag_name"
-body="release-$tag_name"
 
 generate_release()
 {
@@ -12,8 +10,8 @@ generate_release()
 {
   "tag_name": $tag_name,
   "target_commitish": "$target_commitish",
-  "name": $release,
-  "body": $body,
+  "name": $tag_name,
+  "body": $tag_name,
   "draft": false,
   "prerelease": false
 }
