@@ -21,7 +21,6 @@ EOF
 
 if [[ $ref_type == "\"tag"\" ]]
 then
-  echo "ref_type=${ref_type}, tag_name=${tag_name}, target_commitish=${target_commitish}, release=${release}"
   echo "sending data ->"
   echo "$(generate_release)"
   echo "to this URL ->"
@@ -32,7 +31,7 @@ then
 
   exit 0
 else
-  echo "it is not a tag"
+  echo "Not a tag - will not try to release"
   # do not continue the workflow
   exit 0
 fi
